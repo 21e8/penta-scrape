@@ -8,14 +8,20 @@ app = Flask(__name__)
 @app.route('/tweet', methods=['POST'])
 def tweet():
   url = request.form.get('url')
-  return scrape_tweet(url)
+  response = jsonify(scrape_tweet(url))
+  response.headers.add("Access-Control-Allow-Origin", "*")
+  return response
 
 @app.route('/medium', methods=['POST'])
 def medium():
   url = request.form.get('url')
-  return scrape_medium(url)
+  response = jsonify(scrape_medium(url))
+  response.headers.add("Access-Control-Allow-Origin", "*")
+  return response
 
 @app.route('/reddit', methods=['POST'])
 def reddit():
   url = request.form.get('url')
-  return scrape_reddit(url)
+  response = jsonify(scrape_reddit(url))
+  response.headers.add("Access-Control-Allow-Origin", "*")
+  return response
